@@ -14,9 +14,23 @@
  * @return {void} Do not return anything, modify nums1 in-place instead.
  */
 var merge = function(nums1, m, nums2, n) {
-    /**
-     * The input array's length might be different than n or m.
-     */
+    let i = m - 1;
+    let j = n - 1;
+    let k = m + n - 1;
+
+    while (i >= 0 && j >= 0) {
+        if (nums1[i] > nums2[j]) nums1[k--] = nums1[i--];
+        else nums1[k--] = nums2[j--];
+    }
+    
+    while (j >= 0) nums1[k--] = nums2[j--];
+}
+
+/**
+ * Worse solution.
+ 
+var merge = function(nums1, m, nums2, n) {
+    // The input array's length might be different than n or m.
     let l1 = nums1.length;
     let l2 = nums2.length;
     nums1.splice(m, l1 - m);
@@ -52,6 +66,8 @@ var merge = function(nums1, m, nums2, n) {
         arr2[j] = temp;
     }
 };
+ *
+ */
 
 /**
  * "Tricky" (read as dumb) inputs:
